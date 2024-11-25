@@ -10,3 +10,4 @@ spec:
       port: 80
       targetPort: 5000
   type: LoadBalancer
+  sessionAffinity: None  # Set to "ClientIP" if sticky sessions are needed

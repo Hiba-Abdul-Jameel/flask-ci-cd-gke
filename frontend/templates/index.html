@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend - Fetch Messages</title>
+</head>
+<body>
+    <h1>Welcome to the Frontend</h1>
+    <button id="fetchMessages">Get Messages</button>
+    <div id="messages"></div>
+
+    <script>
+        document.getElementById('fetchMessages').addEventListener('click', async () => {
+            const response = await fetch('/get_messages');
+            const data = await response.json();
+            const messagesDiv = document.getElementById('messages');
+
+            if (data.error) {
+                messagesDiv.textContent = `Error: ${data.error}`;
+            } else {
+                messagesDiv.innerHTML = `<ul>${data.map(msg => `<li>${msg}</li>`).join('')}</ul>`;
+            }
+        });
+    </script>
+</body>
+</html>
